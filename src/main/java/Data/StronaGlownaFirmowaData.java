@@ -73,12 +73,9 @@ public class StronaGlownaFirmowaData {
     public void przejdzDoFirmowegoPrzelewu() {
         WykonajTransakcje.click();
         MojeKontoFirmowe.click();
-        //KD_WykonajTransakcje.click();
-        //PrzelewZwykly.click();
     }
     public void przejdzDoPrzelewuDoZus() {
         //finanseFirmoweTab.click();
-        //mojeKontoFirmowe.click();
         //wykonajTransakcjeButton.click();
         przelewDoZusButton.click();
 
