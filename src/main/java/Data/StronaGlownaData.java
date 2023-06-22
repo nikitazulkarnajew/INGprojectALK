@@ -54,6 +54,8 @@ public class StronaGlownaData {
 
 
 
+
+
     public void przejdzDoZwyklegoPrzelewu() {
 
 
@@ -96,6 +98,7 @@ public class StronaGlownaData {
     }
 
 
+
     public WebElement getPrzelewWyslanyKomunikat() {
         return PrzelewWyslanyKomunikat;
     }
@@ -103,8 +106,6 @@ public class StronaGlownaData {
     public WebElement getPrzelewWyslanyTytul() {
         return PrzelewWyslanyTytul;
     }
-
-
 
 
 }

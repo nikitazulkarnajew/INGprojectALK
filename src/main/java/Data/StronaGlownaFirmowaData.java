@@ -68,7 +68,17 @@ public class StronaGlownaFirmowaData {
     @FindBy(xpath = "//*[@class=\"cookie-policy_close js-close-cookie glyphicon glyphicon-ing-close\"]")
     private WebElement zamknijCookies;
 
+    @FindBy(xpath = "//*[@class=\"ing-history\"]")
+    private WebElement kliknijHistoria;
 
+    @FindBy(xpath = "//*[@class=\"module-header ui-title\"]")
+    private WebElement HistoriaTransakcji;
+
+    @FindBy(xpath = "//*[@class=\"nav-user__logout\"]")
+    private WebElement kliknijLogout;
+
+    @FindBy(xpath = "//*[@class=\"h2-pwa\"]")
+    private WebElement LogoutMessage;
 
 
     public void przejdzDoKontekstuFirmowego() {
@@ -81,6 +91,7 @@ public class StronaGlownaFirmowaData {
         MojeKontoFirmowe.click();
         zamknijCookies.click();
     }
+
     public void przejdzDoPrzelewuDoZus() {
         przelewDoZusButton.click();
     }
@@ -102,7 +113,7 @@ public class StronaGlownaFirmowaData {
 
     }
 
-    public void wypelnijNazwePlatnika(String NazwaPlatnika){
+    public void wypelnijNazwePlatnika(String NazwaPlatnika) {
         nazwaPlatnika.sendKeys(NazwaPlatnika);
     }
 
@@ -121,10 +132,33 @@ public class StronaGlownaFirmowaData {
             return false;
         }
     }
+
     public static WebElement waitForElementToBeClickable(WebDriver driver, WebElement element, int durationInSec) {
         return new WebDriverWait(driver, Duration.ofSeconds(durationInSec))
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public void przejdzDoHistorii() {
+        zamknijCookies.click();
+        kliknijHistoria.click();
+    }
+
+    public WebElement getHistoriaTransakcji() {
+        return HistoriaTransakcji;
+}
+
+    public void wyswietlenieHistorii() {
+        zamknijCookies.click();
+        kliknijHistoria.click();
+    }
+
+    public void przejdzDoLogout() {
+        zamknijCookies.click();
+        kliknijLogout.click();
+    }
+
+    public WebElement getSafeLogout() {
+        return LogoutMessage;
+    }
 
 }
