@@ -129,4 +129,7 @@ public class UslugiNarzedziaData {
     public WebElement getBrakWynikow() {
         return BrakWynikow;
     }
+
+
+
 }

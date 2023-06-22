@@ -26,7 +26,7 @@ public class INGtest {
         //String path = "D:\\chromedriver\\chromedriver.exe";
         // System.setProperty("webdriver.chrome.driver", path);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
+        driver.get("C");
         driver.manage().window().maximize();
         StronaGlownaData StronaGlownaData = new StronaGlownaData(driver);
         StronaGlownaData.przejdzDoZwyklegoPrzelewu();
@@ -94,16 +94,59 @@ public class INGtest {
         StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
         StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
         StronaGlownaFirmowaData.przejdzDoFirmowegoPrzelewu();
-        //JavascriptExecutor jsx = (JavascriptExecutor)driver;
-        //jsx.executeScript("window.scrollBy(0,450)", "");
         StronaGlownaFirmowaData.przejdzDoPrzelewuDoZus();
         StronaGlownaFirmowaData.wypelnijKwotyZus("111", "222",
                 "333", "444");
         StronaGlownaFirmowaData.wypelnijDeklaracje("02", "06", "2022");
-        //JavascriptExecutor js = (JavascriptExecutor) driver;
-        //js.executeScript("window.scrollBy(0,350)", "");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,350)", "");
         StronaGlownaFirmowaData.wypelnijNazwePlatnika("Janusz Tracz");
         StronaGlownaFirmowaData.akceptujPrzelewDoZus();
+
+
+        driver.quit();
+
+    }
+
+
+
+    @Test(priority = 2)
+    public void przejdzDoHistorii(){
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
+        driver.manage().window().maximize();
+        StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
+        StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
+        StronaGlownaFirmowaData.wyswietlenieHistorii();
+
+        //Sprawdzenie czy komunikat wyświetla się na stronie
+        Assert.assertEquals(StronaGlownaFirmowaData.getHistoriaTransakcji().isDisplayed(), true);
+
+        //Sprawdzenie czy tekst Historia transakcji wyświetla się poprawnie na ekranie
+        Assert.assertEquals(StronaGlownaFirmowaData.getHistoriaTransakcji().getText(), "Historia transakcji");
+
+
+        driver.quit();
+    }
+
+
+    @Test(priority = 2)
+    public void przejdzDoLogout() {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
+        driver.manage().window().maximize();
+        StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
+        StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
+        StronaGlownaFirmowaData.przejdzDoLogout();
+
+        //Sprawdzenie czy komunikat wyświetla się na stronie
+        Assert.assertEquals(StronaGlownaFirmowaData.getSafeLogout().isDisplayed(), true);
+
+        //Sprawdzenie czy tekst Historia transakcji wyświetla się poprawnie na ekranie
+        Assert.assertEquals(StronaGlownaFirmowaData.getSafeLogout().getText(), "Bezpiecznie wylogowaliśmy Cię z Mojego ING. Do zobaczenia!");
+
         driver.quit();
 
     }
