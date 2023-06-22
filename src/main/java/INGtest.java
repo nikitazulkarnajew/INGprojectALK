@@ -19,7 +19,6 @@ public class INGtest {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
     }
 
-
     @Test(priority = 1)
 
     public void wyslaniePrzelewu() {
@@ -30,7 +29,6 @@ public class INGtest {
         driver.get("https://login.ingbank.pl/mojeing/demo/#home");
         driver.manage().window().maximize();
         StronaGlownaData StronaGlownaData = new StronaGlownaData(driver);
-
         StronaGlownaData.przejdzDoZwyklegoPrzelewu();
         StronaGlownaData.wypelnijKwotePrzelewu("500");
         StronaGlownaData.wypelnijNazweAdresOdbiorcy("Urząd Miasta, Al. Marszałka Piłsudskiego 52/54 81-382 Gdynia");
@@ -38,7 +36,6 @@ public class INGtest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,250)", "");
         StronaGlownaData.zatwierdzPrzelewZwykly();
-
 
 
         //Sprawdzenie czy komunikat wyświetla się na stronie
@@ -64,8 +61,6 @@ public class INGtest {
         driver.get("https://login.ingbank.pl/mojeing/demo/#home");
         driver.manage().window().maximize();
         UslugiNarzedziaData UslugiNarzedziaData = new UslugiNarzedziaData(driver);
-
-
         UslugiNarzedziaData.przejdzDoListyOdbiorcow();
         UslugiNarzedziaData.przejdzDoFormatkiDodajOdbiorce();
         UslugiNarzedziaData.wypelnijNazweOdbiorcy("Rafał Mazur");
@@ -82,20 +77,11 @@ public class INGtest {
         UslugiNarzedziaData.wyszukajOdbiorce("Rafał");
         Assert.assertEquals(UslugiNarzedziaData.getNazwaDodanegoOdbiorcy().getText(), "Rafał");
 
-
         //Usunięcie dodanego odbiorcy
         UslugiNarzedziaData.getNazwaDodanegoOdbiorcy().click();
         UslugiNarzedziaData.usunOdbiorce();
 
-
-        //Wyszukanie odbiorcy i sprawdzenie czy nie znajduje się on na liście odbiorców
-        //UslugiNarzedziaData.wyszukajOdbiorce("Rafał");
-        // Assert.assertEquals(UslugiNarzedziaData.getBrakWynikow().getText(), "Brak wyników" + " " +
-        //"Niestety, nie znaleźliśmy frazy, która Cię interesuje");
-
         driver.quit();
-
-
     }
 
 
@@ -106,13 +92,10 @@ public class INGtest {
         driver.get("https://login.ingbank.pl/mojeing/demo/#home");
         driver.manage().window().maximize();
         StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
-
-
         StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
         StronaGlownaFirmowaData.przejdzDoFirmowegoPrzelewu();
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        JavascriptExecutor jsx = (JavascriptExecutor)driver;
-        jsx.executeScript("window.scrollBy(0,450)", "");
+        //JavascriptExecutor jsx = (JavascriptExecutor)driver;
+        //jsx.executeScript("window.scrollBy(0,450)", "");
         StronaGlownaFirmowaData.przejdzDoPrzelewuDoZus();
         StronaGlownaFirmowaData.wypelnijKwotyZus("111", "222",
                 "333", "444");

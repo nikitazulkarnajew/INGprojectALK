@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class StronaGlownaFirmowaData {
 
@@ -23,9 +27,8 @@ public class StronaGlownaFirmowaData {
     @FindBy(xpath = "//*[@class=\"js-transaction-button link\"]")
     private WebElement wykonajTransakcjeButton;
 
-    @FindBy(xpath = "//*[@name=\"Przelew do ZUS\"]")
+    @FindBy(xpath = "//*[@class=\"tile_icon tile_icon--small glyphicon-ing type-icon glyphicon-ing-zus\"]/../../div")
     private WebElement przelewDoZusButton;
-
 
     @FindBy(xpath = "//*[@id=\"transfer-amount-68101010230000261395400000\"]")
     private WebElement funduszEmeryturPomostowychField;
@@ -62,6 +65,9 @@ public class StronaGlownaFirmowaData {
     @FindBy(xpath = "//*[@class=\"product-tile__container ing-hover\"]")
     private WebElement MojeKontoFirmowe;
 
+    @FindBy(xpath = "//*[@class=\"cookie-policy_close js-close-cookie glyphicon glyphicon-ing-close\"]")
+    private WebElement zamknijCookies;
+
 
 
 
@@ -73,12 +79,10 @@ public class StronaGlownaFirmowaData {
     public void przejdzDoFirmowegoPrzelewu() {
         WykonajTransakcje.click();
         MojeKontoFirmowe.click();
+        zamknijCookies.click();
     }
     public void przejdzDoPrzelewuDoZus() {
-        //finanseFirmoweTab.click();
-        //wykonajTransakcjeButton.click();
         przelewDoZusButton.click();
-
     }
 
     public void wypelnijKwotyZus(String FunduszEmeryturPomostowych, String FunduszPracy, String UbezpieczenieZdrowotne,
@@ -107,6 +111,19 @@ public class StronaGlownaFirmowaData {
         przelewDoZusDalejButton.click();
         przelewDoZusPotwierdzButton.click();
 
+    }
+
+    public static boolean waitAndCheckIfElementIsClickable(WebDriver driver, WebElement element, int durationInSec) {
+        try {
+            waitForElementToBeClickable(driver, element, durationInSec);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public static WebElement waitForElementToBeClickable(WebDriver driver, WebElement element, int durationInSec) {
+        return new WebDriverWait(driver, Duration.ofSeconds(durationInSec))
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
 
 
