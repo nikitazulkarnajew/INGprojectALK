@@ -86,42 +86,47 @@ public class StronaGlownaFirmowaData {
         return this;
     }
 
-    public void przejdzDoFirmowegoPrzelewu() {
+    public StronaGlownaFirmowaData przejdzDoFirmowegoPrzelewu() {
         WykonajTransakcje.click();
         MojeKontoFirmowe.click();
         closeCookies();
+        return this;
     }
 
 
-    public void przejdzDoPrzelewuDoZus() {
+    public StronaGlownaFirmowaData przejdzDoPrzelewuDoZus() {
         przelewDoZusButton.click();
+        return this;
     }
 
-    public void wypelnijKwotyZus(String FunduszEmeryturPomostowych, String FunduszPracy, String UbezpieczenieZdrowotne,
+    public StronaGlownaFirmowaData wypelnijKwotyZus(String FunduszEmeryturPomostowych, String FunduszPracy, String UbezpieczenieZdrowotne,
                                  String UbezpieczenieSpoleczne) {
         funduszEmeryturPomostowychField.sendKeys(FunduszEmeryturPomostowych);
         funduszPracyField.sendKeys(FunduszPracy);
         ubezpieczeniZdrowotneField.sendKeys(UbezpieczenieZdrowotne);
         ubezpieczeniSpoleczneField.sendKeys(UbezpieczenieSpoleczne);
+        return this;
 
     }
 
-    public void wypelnijDeklaracje(String NumerDeklaracji, String Miesiac, String Rok) {
+    public StronaGlownaFirmowaData wypelnijDeklaracje(String NumerDeklaracji, String Miesiac, String Rok) {
         deklaracjaNumer.sendKeys(NumerDeklaracji);
         deklaracjaMiesiac.sendKeys(Miesiac);
         deklaracjaRok.sendKeys(Rok);
-
-
+        return this;
     }
 
-    public void wypelnijNazwePlatnika(String NazwaPlatnika) {
+    public StronaGlownaFirmowaData wypelnijNazwePlatnika(String NazwaPlatnika) {
         nazwaPlatnika.sendKeys(NazwaPlatnika);
+        return this;
     }
 
 
-    public void akceptujPrzelewDoZus() {
+    public StronaGlownaFirmowaData akceptujPrzelewDoZus() {
         przelewDoZusDalejButton.click();
         przelewDoZusPotwierdzButton.click();
+        closeCookies();
+        return this;
 
     }
 
@@ -148,9 +153,10 @@ public class StronaGlownaFirmowaData {
         return HistoriaTransakcji;
 }
 
-    public void wyswietlenieHistorii() {
+    public StronaGlownaFirmowaData wyswietlenieHistorii() {
         closeCookies();
         kliknijHistoria.click();
+        return this;
     }
 
     public StronaGlownaFirmowaData przejdzDoLogout() {
