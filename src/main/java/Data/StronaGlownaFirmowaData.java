@@ -81,16 +81,17 @@ public class StronaGlownaFirmowaData {
     private WebElement LogoutMessage;
 
 
-    public void przejdzDoKontekstuFirmowego() {
+    public StronaGlownaFirmowaData przejdzDoKontekstuFirmowego() {
         zakladkaFirmowa.click();
-
+        return this;
     }
 
     public void przejdzDoFirmowegoPrzelewu() {
         WykonajTransakcje.click();
         MojeKontoFirmowe.click();
-        zamknijCookies.click();
+        closeCookies();
     }
+
 
     public void przejdzDoPrzelewuDoZus() {
         przelewDoZusButton.click();
@@ -139,7 +140,7 @@ public class StronaGlownaFirmowaData {
     }
 
     public void przejdzDoHistorii() {
-        zamknijCookies.click();
+        closeCookies();
         kliknijHistoria.click();
     }
 
@@ -148,17 +149,24 @@ public class StronaGlownaFirmowaData {
 }
 
     public void wyswietlenieHistorii() {
-        zamknijCookies.click();
+        closeCookies();
         kliknijHistoria.click();
     }
 
-    public void przejdzDoLogout() {
-        zamknijCookies.click();
+    public StronaGlownaFirmowaData przejdzDoLogout() {
+        closeCookies();
         kliknijLogout.click();
+        return this;
     }
 
     public WebElement getSafeLogout() {
         return LogoutMessage;
     }
+
+    private void closeCookies() {
+        zamknijCookies.click();
+    }
+
+
 
 }

@@ -58,6 +58,9 @@ public class UslugiNarzedziaData {
     @FindBy(xpath = "//*[@class=\"notification info\"]")
     private WebElement BrakWynikow;
 
+    @FindBy(xpath = "//*[@class=\"cookie-policy_close js-close-cookie glyphicon glyphicon-ing-close\"]")
+    private WebElement zamknijCookies;
+
 
     public void przejdzDoListyOdbiorcow() {
         UslugiNarzedzia.click();
@@ -130,6 +133,9 @@ public class UslugiNarzedziaData {
         return BrakWynikow;
     }
 
+    private void closeCookies() {
+        zamknijCookies.click();
+    }
 
 
 }

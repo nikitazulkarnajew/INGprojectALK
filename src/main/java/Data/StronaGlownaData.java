@@ -10,9 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 public class StronaGlownaData {
 
 
-    public StronaGlownaData(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
+    //public StronaGlownaData(WebDriver driver) {
+     //   PageFactory.initElements(driver, this);
+    //}
 
 
     @FindBy(xpath = "//*[@id=\"menu-products\"]")
@@ -51,44 +51,58 @@ public class StronaGlownaData {
     @FindBy(xpath = "//*[@class=\"product-tile__title\"]")
     private WebElement PrzelewWyslanyTytul;
 
+    @FindBy(xpath = "//*[@class=\"cookie-policy_close js-close-cookie glyphicon glyphicon-ing-close\"]")
+    private WebElement zamknijCookies;
+
+
+    private WebDriver driver;
+    public StronaGlownaData(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+    }
 
 
 
 
-
-    public void przejdzDoZwyklegoPrzelewu() {
+    public StronaGlownaData przejdzDoZwyklegoPrzelewu() {
 
 
         MojeFinanse.click();
         Konto_Direct.click();
         KD_WykonajTransakcje.click();
         PrzelewZwykly.click();
+        return this;
     }
 
-    public void wypelnijNazweAdresOdbiorcy(String nazwaAdresOdbiorcy) {
+    public StronaGlownaData wypelnijNazweAdresOdbiorcy(String nazwaAdresOdbiorcy) {
 
         NazwaIadresOdbiorcy.click();
         NazwaIadresOdbiorcy.sendKeys(nazwaAdresOdbiorcy);
+        return this;
 
     }
 
-    public void wypelnijKwotePrzelewu(String kwotaPrzelewu) {
+    public StronaGlownaData wypelnijKwotePrzelewu(String kwotaPrzelewu) {
 
         KwotaPrzelewZwykly.click();
         KwotaPrzelewZwykly.sendKeys(kwotaPrzelewu);
+        return this;
 
     }
 
-    public void wypelnijTytulPrzelewu(String tytul) {
+    public StronaGlownaData wypelnijTytulPrzelewu(String tytul) {
 
         TytulPrzelewu.click();
         TytulPrzelewu.sendKeys(tytul);
+        return this;
 
     }
 
-    public void zatwierdzPrzelewZwykly() {
+    public StronaGlownaData zatwierdzPrzelewZwykly() {
+        closeCookies();
         DalejPrzelewZwykly.click();
         PotwierdzPrzelewZwykly.click();
+        return this;
     }
 
 
@@ -107,6 +121,9 @@ public class StronaGlownaData {
         return PrzelewWyslanyTytul;
     }
 
+    private void closeCookies() {
+        zamknijCookies.click();
+    }
 
 }
 

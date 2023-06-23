@@ -11,44 +11,33 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 
-public class INGtest {
+public class INGtest extends BaseTest {
 
 
-    @BeforeClass
-    public void SetUp() {
-        System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
-    }
+
 
     @Test(priority = 1)
 
     public void wyslaniePrzelewu() {
-        WebDriver driver = new ChromeDriver();
-        //String path = "D:\\chromedriver\\chromedriver.exe";
-        // System.setProperty("webdriver.chrome.driver", path);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("C");
-        driver.manage().window().maximize();
-        StronaGlownaData StronaGlownaData = new StronaGlownaData(driver);
-        StronaGlownaData.przejdzDoZwyklegoPrzelewu();
-        StronaGlownaData.wypelnijKwotePrzelewu("500");
-        StronaGlownaData.wypelnijNazweAdresOdbiorcy("Urząd Miasta, Al. Marszałka Piłsudskiego 52/54 81-382 Gdynia");
-        StronaGlownaData.wypelnijTytulPrzelewu("To jest tytul przelewu ");
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,250)", "");
-        StronaGlownaData.zatwierdzPrzelewZwykly();
+        StronaGlownaData stronaGlownaData = new StronaGlownaData(driver);
+        stronaGlownaData.
+                przejdzDoZwyklegoPrzelewu().
+                wypelnijKwotePrzelewu("500").
+                wypelnijNazweAdresOdbiorcy("Urząd Miasta, Al. Marszałka Piłsudskiego 52/54 81-382 Gdynia").
+                wypelnijTytulPrzelewu("To jest tytul przelewu ").
+                zatwierdzPrzelewZwykly();
 
 
         //Sprawdzenie czy komunikat wyświetla się na stronie
-        Assert.assertEquals(StronaGlownaData.getPrzelewWyslanyKomunikat().isDisplayed(), true);
+        Assert.assertEquals(stronaGlownaData.getPrzelewWyslanyKomunikat().isDisplayed(), true);
 
         //Sprawdzenie czy komunikat przelewu wyświetla się poprawnie na ekranie sukcesu
-        Assert.assertEquals(StronaGlownaData.getPrzelewWyslanyKomunikat().getText(), "Przelew został wykonany");
+        Assert.assertEquals(stronaGlownaData.getPrzelewWyslanyKomunikat().getText(), "Przelew został wykonany");
 
         //Sprawdzenie czy wprowadzony tytul przelewu wyświetla się poprawnie na ekranie sukcesu
-        Assert.assertEquals(StronaGlownaData.getPrzelewWyslanyTytul().getText(), "To jest tytul przelewu");
+        Assert.assertEquals(stronaGlownaData.getPrzelewWyslanyTytul().getText(), "To jest tytul przelewu");
 
-        StronaGlownaData.wrocNaStroneGlowna();
-        driver.quit();
+        //stronaGlownaData.wrocNaStroneGlowna();
 
     }
 
@@ -56,10 +45,6 @@ public class INGtest {
     @Test(priority = 2)
 
     public void dodanieOdbiorcy() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
-        driver.manage().window().maximize();
         UslugiNarzedziaData UslugiNarzedziaData = new UslugiNarzedziaData(driver);
         UslugiNarzedziaData.przejdzDoListyOdbiorcow();
         UslugiNarzedziaData.przejdzDoFormatkiDodajOdbiorce();
@@ -81,16 +66,11 @@ public class INGtest {
         UslugiNarzedziaData.getNazwaDodanegoOdbiorcy().click();
         UslugiNarzedziaData.usunOdbiorce();
 
-        driver.quit();
     }
 
 
     @Test(priority = 3)
     public void wyslaniePrzelewuDoZus() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
-        driver.manage().window().maximize();
         StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
         StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
         StronaGlownaFirmowaData.przejdzDoFirmowegoPrzelewu();
@@ -104,7 +84,7 @@ public class INGtest {
         StronaGlownaFirmowaData.akceptujPrzelewDoZus();
 
 
-        driver.quit();
+
 
     }
 
@@ -112,10 +92,6 @@ public class INGtest {
 
     @Test(priority = 2)
     public void przejdzDoHistorii(){
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
-        driver.manage().window().maximize();
         StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
         StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
         StronaGlownaFirmowaData.wyswietlenieHistorii();
@@ -133,24 +109,15 @@ public class INGtest {
 
     @Test(priority = 2)
     public void przejdzDoLogout() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login.ingbank.pl/mojeing/demo/#home");
-        driver.manage().window().maximize();
-        StronaGlownaFirmowaData StronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
-        StronaGlownaFirmowaData.przejdzDoKontekstuFirmowego();
-        StronaGlownaFirmowaData.przejdzDoLogout();
+        StronaGlownaFirmowaData stronaGlownaFirmowaData = new StronaGlownaFirmowaData(driver);
+        stronaGlownaFirmowaData.
+                przejdzDoKontekstuFirmowego().
+                przejdzDoLogout();
 
-        //Sprawdzenie czy komunikat wyświetla się na stronie
-        Assert.assertEquals(StronaGlownaFirmowaData.getSafeLogout().isDisplayed(), true);
+        Assert.assertEquals(stronaGlownaFirmowaData.getSafeLogout().isDisplayed(), true);
 
-        //Sprawdzenie czy tekst Historia transakcji wyświetla się poprawnie na ekranie
-        Assert.assertEquals(StronaGlownaFirmowaData.getSafeLogout().getText(), "Bezpiecznie wylogowaliśmy Cię z Mojego ING. Do zobaczenia!");
-
-        driver.quit();
-
+        Assert.assertEquals(stronaGlownaFirmowaData.getSafeLogout().getText(), "Bezpiecznie wylogowaliśmy Cię z Mojego ING. Do zobaczenia!");
     }
-
 
 }
 
