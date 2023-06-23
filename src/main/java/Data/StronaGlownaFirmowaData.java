@@ -83,13 +83,13 @@ public class StronaGlownaFirmowaData {
 
     public StronaGlownaFirmowaData przejdzDoKontekstuFirmowego() {
         zakladkaFirmowa.click();
+        closeCookies();
         return this;
     }
 
     public StronaGlownaFirmowaData przejdzDoFirmowegoPrzelewu() {
         WykonajTransakcje.click();
         MojeKontoFirmowe.click();
-        closeCookies();
         return this;
     }
 
