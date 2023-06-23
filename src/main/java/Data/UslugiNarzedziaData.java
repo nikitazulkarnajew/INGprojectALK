@@ -110,6 +110,7 @@ public class UslugiNarzedziaData {
     }
 
     public UslugiNarzedziaData potwierdzDodajOdbiorce() {
+        closeCookies();
         DO_PotwierdzButton.click();
         return this;
     }

@@ -65,9 +65,8 @@ public class StronaGlownaData {
 
 
     public StronaGlownaData przejdzDoZwyklegoPrzelewu() {
-
-
         MojeFinanse.click();
+        closeCookies();
         Konto_Direct.click();
         KD_WykonajTransakcje.click();
         PrzelewZwykly.click();
@@ -99,7 +98,6 @@ public class StronaGlownaData {
     }
 
     public StronaGlownaData zatwierdzPrzelewZwykly() {
-        closeCookies();
         DalejPrzelewZwykly.click();
         PotwierdzPrzelewZwykly.click();
         return this;
