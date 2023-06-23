@@ -58,62 +58,72 @@ public class UslugiNarzedziaData {
     @FindBy(xpath = "//*[@class=\"notification info\"]")
     private WebElement BrakWynikow;
 
+    @FindBy(xpath = "//*[@class=\"cookie-policy_close js-close-cookie glyphicon glyphicon-ing-close\"]")
+    private WebElement zamknijCookies;
 
-    public void przejdzDoListyOdbiorcow() {
+
+    public UslugiNarzedziaData przejdzDoListyOdbiorcow() {
         UslugiNarzedzia.click();
         Odbiorcy.click();
+        return this;
 
     }
 
 
-    public void przejdzDoFormatkiDodajOdbiorce() {
+    public UslugiNarzedziaData przejdzDoFormatkiDodajOdbiorce() {
         DodajOdbiorceButton.click();
+        return this;
 
     }
 
-    public void wypelnijNazweOdbiorcy(String nazwaOdbiorcy) {
+    public UslugiNarzedziaData wypelnijNazweOdbiorcy(String nazwaOdbiorcy) {
         TwojaNazwaOdbiorcy.click();
         TwojaNazwaOdbiorcy.sendKeys(nazwaOdbiorcy);
+        return this;
 
     }
 
-    public void wypelnijNazweAdresOdbiorcy(String nazwaAdresOdbiorcy) {
+    public UslugiNarzedziaData wypelnijNazweAdresOdbiorcy(String nazwaAdresOdbiorcy) {
         NazwaAdresOdbiorcy.click();
         NazwaAdresOdbiorcy.sendKeys(nazwaAdresOdbiorcy);
+        return this;
 
 
     }
 
 
-    public void wypelnijNumerKonta(String numerKonta) {
+    public UslugiNarzedziaData wypelnijNumerKonta(String numerKonta) {
         NumerKonta.click();
         NumerKonta.sendKeys(numerKonta);
-
+        return this;
     }
 
-    public void wypelnijNumerTelefonu(String numerTelefonu) {
+    public UslugiNarzedziaData wypelnijNumerTelefonu(String numerTelefonu) {
         TelefonKomorkowy.click();
         TelefonKomorkowy.sendKeys(numerTelefonu);
-
-
+        return this;
     }
 
-    public void akceptujDodajOdbiorce() {
+    public UslugiNarzedziaData akceptujDodajOdbiorce() {
         DO_ZapiszButton.click();
+        return this;
     }
 
-    public void potwierdzDodajOdbiorce() {
+    public UslugiNarzedziaData potwierdzDodajOdbiorce() {
         DO_PotwierdzButton.click();
+        return this;
     }
 
-    public void przejdzDoOdbiorcow() {
+    public UslugiNarzedziaData przejdzDoOdbiorcow() {
         WrocDoListyOdbiorcowButton.click();
+        return this;
 
     }
 
-    public void wyszukajOdbiorce(String nazwaOdbiorcy) {
+    public UslugiNarzedziaData wyszukajOdbiorce(String nazwaOdbiorcy) {
         ListaOdbiorcowSearchField.clear();
         ListaOdbiorcowSearchField.sendKeys(nazwaOdbiorcy);
+        return this;
     }
 
     public WebElement getNazwaDodanegoOdbiorcy() {
@@ -130,6 +140,9 @@ public class UslugiNarzedziaData {
         return BrakWynikow;
     }
 
+    private void closeCookies() {
+        zamknijCookies.click();
+    }
 
 
 }
